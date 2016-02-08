@@ -12,7 +12,9 @@ COPY php.ini /etc/hhvm/php.ini
 
 # Run scripts
 ADD scripts/run.sh /scripts/run.sh
-RUN chmod -R 755 /scripts
+RUN chmod -R 755 /scripts && \
+chmod -R a+rwx /var/run/hhvm && \
+chmod -R a+rwx /var/lib/hhvm/sessions
 
 # The app
 ADD app /app
