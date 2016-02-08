@@ -10,6 +10,26 @@ RUN apt-get clean && \
 
 COPY php.ini /etc/hhvm/php.ini
 
+# Run scripts
+ADD scripts/run.sh /scripts/run.sh
+RUN chmod -R 755 /scripts
+
+# The app
+ADD app /app
+
+# The exposed port
 EXPOSE 9000
 
-CMD ["hhvm", "--mode=server"]
+# VOLUME /app
+WORKDIR /app
+
+ENTRYPOINT ["/scripts/run.sh"]
+
+# Set labels used in OpenShift to describe the builder images
+LABEL io.k8s.description="Debian linux based HHVM Container" \
+      io.k8s.display-name="debian hhvm" \
+      io.openshift.expose-services="9000:http" \
+      io.openshift.tags="builder,html,hhvm,php" \
+      io.openshift.min-memory="1Gi" \
+      io.openshift.min-cpu="1" \
+      io.openshift.non-scalable="false"
