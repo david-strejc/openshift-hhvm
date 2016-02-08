@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Route
 metadata:
-  name: www.myapache-site.com
+  name: www.myhhvm-site.com
 spec:
-  host: www.myapache-site.com
+  host: www.myhhvm-site.com
   to:
     kind: Service
-    name: apache-php
+    name: openshift-hhvm
