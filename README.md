@@ -17,7 +17,7 @@ oc new-project openshift-hhvm \
 Deploy (externally)
 
 ```sh
-oc new-app https://github.com/weepee-org/openshift-hhvm.git --name hhvm
+oc new-app https://github.com/david-strejc/openshift-hhvm.git --name hhvm
 ```
 
 Deploy (weepee internally)
